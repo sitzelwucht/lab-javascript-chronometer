@@ -1,26 +1,60 @@
 class Chronometer {
   constructor() {
-    // ... your code goes here
+    this.currentTime = 0;
+    this.intervalId = 0;
+
   }
+  // fails jasmine spec check unless I call the callback function directly from here
   startClick(callback) {
-    // ... your code goes here
+    this.intervalId = setInterval(() => {
+      this.currentTime++
+      callback()
+    }, 1000);
   }
+
   getMinutes() {
-    // ... your code goes here
+    this.minutes = this.seconds / 60
+    if (this.minutes % 1 == 0) {
+      return this.minutes
+    }
+    else return Math.floor(this.minutes)
+    
   }
+
   getSeconds() {
-    // ... your code goes here
+    this.seconds = this.currentTime
+    return this.seconds % 60
   }
-  twoDigitsNumber() {
-    // ... your code goes here
+
+  twoDigitsNumber(num) {
+    if (num < 10) {
+      return `0${num}`
+    }
+    return num
   }
+
   stopClick() {
-    // ... your code goes here
+    clearInterval(this.intervalId)
   }
+
   resetClick() {
-    // ... your code goes here
+    this.currentTime = 0
   }
+
   splitClick() {
-    // ... your code goes here
+    if (this.getMinutes() < 10 && this.getSeconds() < 10) {
+      return `0${this.getMinutes()}:0${this.getSeconds()}`
+    }
+    else if (this.getMinutes() < 10) {
+      return `0${this.getMinutes()}:${this.getSeconds()}`
+    }
+    else if (this.getSeconds() < 10) {
+      return `${this.getMinutes()}:0${this.getSeconds()}`
+    }
+    else {
+      return `${this.getMinutes()}:${this.getSeconds()}`
+    }
   }
+
+
 }
