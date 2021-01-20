@@ -14,11 +14,7 @@ class Chronometer {
 
   getMinutes() {
     this.minutes = this.seconds / 60
-    if (this.minutes % 1 == 0) {
-      return this.minutes
-    }
-    else return Math.floor(this.minutes)
-    
+    return Math.floor(this.minutes)
   }
 
   getSeconds() {
@@ -42,18 +38,7 @@ class Chronometer {
   }
 
   splitClick() {
-    if (this.getMinutes() < 10 && this.getSeconds() < 10) {
-      return `0${this.getMinutes()}:0${this.getSeconds()}`
-    }
-    else if (this.getMinutes() < 10) {
-      return `0${this.getMinutes()}:${this.getSeconds()}`
-    }
-    else if (this.getSeconds() < 10) {
-      return `${this.getMinutes()}:0${this.getSeconds()}`
-    }
-    else {
-      return `${this.getMinutes()}:${this.getSeconds()}`
-    }
+    return `${this.twoDigitsNumber(this.getMinutes())}:${this.twoDigitsNumber(this.getSeconds())}`
   }
 
 
